@@ -79,6 +79,7 @@
                 </executions>
             </plugin>
         </plugins>
+        
     </build>
     <name>D-Attend</name>
 </project>
