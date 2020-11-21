@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.latihanrpl.HomePage">
+   <children>
+      <Button layoutX="601.0" layoutY="14.0" mnemonicParsing="false" onAction="#Logout" text="Logout" />
+      <Label fx:id="txtLabel" layoutX="484.0" layoutY="18.0" prefHeight="17.0" prefWidth="98.0" text="Welcome" />
+      <TabPane layoutX="46.0" layoutY="77.0" prefHeight="249.0" prefWidth="615.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Tambah Kelas">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="716.0">
+                     <children>
+                        <TextField fx:id="kodeKelas" layoutX="104.0" layoutY="14.0" />
+                        <TextField fx:id="namaKelas" layoutX="104.0" layoutY="46.0" />
+                        <TextField fx:id="idDosen" layoutX="104.0" layoutY="78.0" />
+                        <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kode Kelas" />
+                        <Text layoutX="14.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nama Kelas" />
+                        <Text layoutX="14.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dosen Pengajar" />
+                        <Button layoutX="523.0" layoutY="124.0" mnemonicParsing="false" onAction="#insert" text="Tambah" />
+                        <Label fx:id="labelStatus" contentDisplay="RIGHT" layoutX="14.0" layoutY="110.0" prefHeight="17.0" prefWidth="496.0" text="Status" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Lihat Kelas">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="318.0" prefWidth="615.0">
+                     <children>
+                        <TableView prefHeight="220.0" prefWidth="615.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="Kode Kelas" />
+                            <TableColumn prefWidth="103.0" text="Nama Kelas" />
+                              <TableColumn prefWidth="105.0" text="Dosen Pengajar" />
+                              <TableColumn prefWidth="75.0" text="Action" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

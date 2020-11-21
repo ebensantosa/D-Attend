@@ -9,25 +9,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.latihanrpl.Login">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="700.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.latihanrpl.Login">
    <children>
-      <Button alignment="CENTER" layoutX="116.0" layoutY="227.0" mnemonicParsing="false" onAction="#login" text="Login">
+      <Button alignment="CENTER" layoutX="316.0" layoutY="326.0" mnemonicParsing="false" onAction="#login" text="Login">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <PasswordField fx:id="txtPassword" alignment="TOP_LEFT" layoutX="39.0" layoutY="158.0" promptText="password">
+      <PasswordField fx:id="txtPassword" alignment="TOP_LEFT" layoutX="239.0" layoutY="257.0" promptText="password">
          <font>
             <Font size="18.0" />
          </font>
       </PasswordField>
-      <TextField fx:id="txtEmail" alignment="TOP_LEFT" layoutX="39.0" layoutY="103.0" promptText="email">
+      <TextField fx:id="txtEmail" alignment="TOP_LEFT" layoutX="239.0" layoutY="202.0" promptText="email">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <Label fx:id="txtLabel" alignment="CENTER" layoutX="16.0" layoutY="197.0" prefHeight="17.0" prefWidth="268.0" text="Status" textFill="#ff0101" />
-      <ImageView fitHeight="71.0" fitWidth="105.0" layoutX="113.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+      <Label fx:id="txtLabel" alignment="CENTER" layoutX="216.0" layoutY="296.0" prefHeight="17.0" prefWidth="268.0" text="Status" textFill="#ff0101" />
+      <ImageView fitHeight="71.0" fitWidth="105.0" layoutX="313.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/Logo.jpeg" />
          </image>

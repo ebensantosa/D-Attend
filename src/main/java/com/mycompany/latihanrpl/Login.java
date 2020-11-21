@@ -65,7 +65,7 @@ public class Login implements Initializable{
 //                   Scene scene = new Scene(root,400,400);
 //                   stage.setScene(scene);
 //                   stage.show();
-                     App.setRoot("secondary");
+                     App.setRoot("HomePage");
                } else {
                    txtLabel.setText("Login Gagal,Coba lagi !!!");
                }
