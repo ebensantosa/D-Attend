@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="35.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard Dosen" />
+      <TableView layoutX="30.0" layoutY="83.0" prefHeight="200.0" prefWidth="557.0">
+        <columns>
+          <TableColumn prefWidth="93.0" text="No" />
+          <TableColumn prefWidth="123.0" text="Nama Kelas" />
+            <TableColumn prefWidth="75.0" text="Presensi" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
