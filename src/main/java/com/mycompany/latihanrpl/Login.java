@@ -59,13 +59,7 @@ public class Login implements Initializable{
            
            while (queryResult.next()){
                if(queryResult.getInt(1) == 1) {
-                   //loginMessageLabel11.setText("Login Berhasil ");
-//                   Stage stage = new Stage();
-//                   Parent root = FXMLLoader.load(getClass().getResource("secondary.fxml"));
-//                   Scene scene = new Scene(root,400,400);
-//                   stage.setScene(scene);
-//                   stage.show();
-                     App.setRoot("HomePage");
+                     App.setRoot("AdminPage");
                } else {
                    txtLabel.setText("Login Gagal,Coba lagi !!!");
                }
