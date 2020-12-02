@@ -15,4 +15,6 @@ Tugas ini digunakan untuk memenuhi tugas akhir RPL
 
 
 ###TEAM
-- 
+	Nafarel Triyoga Maskuncoro 71180336
+	Ebentera Santosa 71180358
+	Hezkiel Rivaldo Siregar 71180367
