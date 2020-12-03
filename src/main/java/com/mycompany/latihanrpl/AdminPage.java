@@ -75,6 +75,7 @@ public class AdminPage implements Initializable{
                         try{
                             st.executeUpdate(insertData);
                             labelStatus.setText("Input Data Sukses");
+                            showKelas();
                         }catch(SQLException e){
                             e.printStackTrace();
                             labelStatus.setText("Input Data Gagal");
@@ -92,6 +93,21 @@ public class AdminPage implements Initializable{
     }
     
     @FXML
+    private void update(){
+        Connection conn = DBConnector.getInstance().getConnection();
+        String query = "UPDATE kelas SET nama_kelas ='" + namaKelas.getText() +"',id_dosen=" + idDosen.getText() + " WHERE kode_kelas = '" + kodeKelas.getText() + "'";
+        try{
+            Statement st = conn.createStatement();
+            st.executeUpdate(query);
+            labelStatus.setText("Update Data Sukses");
+            showKelas();
+        }catch(SQLException e){
+            e.printStackTrace();
+            labelStatus.setText("Update Data Gagal");
+        }
+    }
+    
+    @FXML
     public void deleteData(){
         
     }
@@ -102,6 +118,8 @@ public class AdminPage implements Initializable{
         labelStatus.setText("Berhasil");
         if (event.getSource() == btnInsert){
             insert();
+        }else if(event.getSource() == btnUpdate){
+            update();
         }
     }
     
