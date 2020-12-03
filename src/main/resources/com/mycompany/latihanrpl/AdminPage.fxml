@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -17,14 +16,14 @@
          <children>
             <Label text="Kode Kelas" />
             <Label text="Nama Kelas" />
-            <Label text="Dosen" />
+            <Label text="ID Dosen" />
          </children>
       </VBox>
       <VBox layoutX="95.0" layoutY="69.0" prefHeight="111.0" prefWidth="200.0" spacing="5.0">
          <children>
             <TextField fx:id="kodeKelas" />
             <TextField fx:id="namaKelas" layoutX="10.0" layoutY="10.0" />
-            <ChoiceBox prefHeight="25.0" prefWidth="214.0" />
+            <TextField fx:id="idDosen" />
          </children>
       </VBox>
       <TableView fx:id="tvKelas" layoutX="316.0" layoutY="69.0" prefHeight="246.0" prefWidth="341.0">
@@ -37,5 +36,12 @@
       <Button fx:id="btnInsert" layoutX="14.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="80.0" text="Insert" />
       <Button fx:id="btnUpdate" layoutX="115.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="80.0" text="Update" />
       <Button fx:id="btnDelete" layoutX="215.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="80.0" text="Delete" />
+      <TableView fx:id="tvDosen" layoutX="35.0" layoutY="240.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="colIdDosen" prefWidth="75.0" text="ID Dosen" />
+          <TableColumn fx:id="colNamaDosen" prefWidth="124.0" text="Nama Dosen" />
+        </columns>
+      </TableView>
+      <Label fx:id="labelStatus" layoutX="14.0" layoutY="46.0" prefHeight="17.0" prefWidth="300.0" />
    </children>
 </AnchorPane>

@@ -31,7 +31,7 @@ public class AdminPage implements Initializable{
     @FXML
     private TextField namaKelas;
     @FXML
-    private TextField dosen;
+    private TextField idDosen;
     @FXML
     private Label labelStatus;
     @FXML
@@ -48,51 +48,61 @@ public class AdminPage implements Initializable{
     private Button btnUpdate;
     @FXML
     private Button btnDelete;
+    @FXML
+    private TableView<Dosen> tvDosen;
+    @FXML
+    private TableColumn<Dosen, Integer> colIdDosen;
+    @FXML
+    private TableColumn<Dosen, String> colNamaDosen;
     
-//    @FXML 
-//    public void insert(ActionEvent event) throws SQLException{
-//       if(kodeKelas.getText().isEmpty() == false && namaKelas.getText().isEmpty() == false && dosen.getText().isEmpty() == false){
-//           Connection conn = DBConnector.getInstance().getConnection();
-//           String insertData = "INSERT INTO kelas values('" + kodeKelas.getText() + "','" + namaKelas.getText() + "','" + dosen.getText() + "')";
-//           String verifyData = "SELECT count(1) FROM kelas WHERE kode_kelas = '" + kodeKelas.getText() + "'";
-//           
-//           try {
-//            Statement statement = conn.createStatement();
-//            ResultSet queryResult = statement.executeQuery(verifyData);
-//           
-//                while (queryResult.next()){
-//                    if(queryResult.getInt(1) == 1) {
-//                        labelStatus.setText("Tambah Data Gagal! Kelas dengan kode " + kodeKelas.getText() + " sudah pernah dibuat");
-//                    }else {
-//                        Statement st = conn.createStatement();
-//                        try{
-//                            st.executeUpdate(insertData);
-//                            labelStatus.setText("Input Data Sukses");
-//                        }catch(SQLException e){
-//                            e.printStackTrace();
-//                            labelStatus.setText("Input Data Gagal");
-//                        }
-//                    }
-//                }
-//           }catch (Exception e){
-//                e.printStackTrace();
-//                e.getCause();
-//           }
-//           
-//       }else{
-//           labelStatus.setText("Semua data harus terisi");
-//       }
-//    }
-//    
-//    @FXML
-//    public void deleteData(){
-//        
-//    }
+    
+    @FXML 
+    public void insert(){
+       if(kodeKelas.getText().isEmpty() == false && namaKelas.getText().isEmpty() == false && idDosen.getText().isEmpty() == false){
+           Connection conn = DBConnector.getInstance().getConnection();
+           String insertData = "INSERT INTO kelas values('" + kodeKelas.getText() + "','" + namaKelas.getText() + "','" + idDosen.getText() + "')";
+           String verifyData = "SELECT count(1) FROM kelas WHERE kode_kelas = '" + kodeKelas.getText() + "'";
+           
+           try {
+            Statement statement = conn.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyData);
+           
+                while (queryResult.next()){
+                    if(queryResult.getInt(1) == 1) {
+                        labelStatus.setText("Tambah Data Gagal! Kelas dengan kode " + kodeKelas.getText() + " sudah pernah dibuat");
+                    }else {
+                        Statement st = conn.createStatement();
+                        try{
+                            st.executeUpdate(insertData);
+                            labelStatus.setText("Input Data Sukses");
+                        }catch(SQLException e){
+                            e.printStackTrace();
+                            labelStatus.setText("Input Data Gagal");
+                        }
+                    }
+                }
+           }catch (Exception e){
+                e.printStackTrace();
+                e.getCause();
+           }
+           
+       }else{
+           labelStatus.setText("Semua data harus terisi");
+       }
+    }
+    
+    @FXML
+    public void deleteData(){
+        
+    }
 
     @FXML
     private void handleButtonAction(ActionEvent event){
         System.out.println("Tombol Berhasil");
         labelStatus.setText("Berhasil");
+        if (event.getSource() == btnInsert){
+            insert();
+        }
     }
     
     @FXML
@@ -103,6 +113,7 @@ public class AdminPage implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         showKelas();
+        showDosen();
     }
     
     public ObservableList<Kelas> getKelasList(){
@@ -128,6 +139,27 @@ public class AdminPage implements Initializable{
         return kelasList;
     }
     
+    public ObservableList<Dosen> getDosenList(){
+        ObservableList<Dosen> dosenList = FXCollections.observableArrayList();
+        Connection conn = DBConnector.getInstance().getConnection();
+        String query = "SELECT * FROM Dosen";
+        Statement st;
+        ResultSet rs;
+        
+        try{
+            st = conn.createStatement();
+            rs = st.executeQuery(query);
+            Dosen dosen;
+            while(rs.next()){
+                dosen = new Dosen(rs.getInt("id_dosen"), rs.getString("nama_dosen"));
+                dosenList.add(dosen);
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return dosenList;
+    }
+    
     private void showKelas(){
         ObservableList<Kelas> list = getKelasList();
         
@@ -136,5 +168,14 @@ public class AdminPage implements Initializable{
         colDosen.setCellValueFactory(new PropertyValueFactory<Kelas, String>("nama_dosen"));
         
         tvKelas.setItems(list);
+    }
+    
+    private void showDosen(){
+        ObservableList<Dosen> list = getDosenList();
+        
+        colIdDosen.setCellValueFactory(new PropertyValueFactory<Dosen, Integer>("id_dosen"));
+        colNamaDosen.setCellValueFactory(new PropertyValueFactory<Dosen, String>("nama_dosen"));
+        
+        tvDosen.setItems(list);
     }
 }
