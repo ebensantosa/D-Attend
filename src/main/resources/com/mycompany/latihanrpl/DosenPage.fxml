@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text layoutX="35.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard Dosen" />
-      <TableView layoutX="30.0" layoutY="83.0" prefHeight="200.0" prefWidth="557.0">
+      <TableView layoutX="22.0" layoutY="130.0" prefHeight="200.0" prefWidth="557.0">
         <columns>
-            <TableColumn prefWidth="93.0" text="No" />
-            <TableColumn prefWidth="123.0" text="Nama Kelas" />
-            <TableColumn prefWidth="75.0" text="Presensi" />
+            <TableColumn prefWidth="93.0" text="NO" />
+            <TableColumn prefWidth="96.0" text="NIM" />
+            <TableColumn prefWidth="248.0" text="NAMA MAHASISWA" />
+            <TableColumn prefWidth="117.0" text="STATUS" />
         </columns>
       </TableView>
+      <Button layoutX="525.0" layoutY="26.0" mnemonicParsing="false" text="Logout" />
+      <Button layoutX="532.0" layoutY="343.0" mnemonicParsing="false" text="Print" />
    </children>
 </AnchorPane>
