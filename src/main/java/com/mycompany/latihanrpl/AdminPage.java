@@ -30,6 +30,8 @@ public class AdminPage implements Initializable{
     @FXML
     private TextField kodeKelas;
     @FXML
+    private TextField kodeKelas1;
+    @FXML
     private TextField namaKelas;
     @FXML
     private TextField idDosen;
@@ -49,6 +51,8 @@ public class AdminPage implements Initializable{
     private Button btnUpdate;
     @FXML
     private Button btnDelete;
+    @FXML
+    private Button btnGo;
     @FXML
     private TableView<Dosen> tvDosen;
     @FXML
@@ -124,7 +128,7 @@ public class AdminPage implements Initializable{
     }
 
     @FXML
-    private void handleButtonAction(ActionEvent event){
+    private void handleButtonAction(ActionEvent event) throws IOException{
         System.out.println("Tombol Berhasil");
         labelStatus.setText("Berhasil");
         if (event.getSource() == btnInsert){
@@ -133,7 +137,14 @@ public class AdminPage implements Initializable{
             update();
         }else if(event.getSource() == btnDelete){
             delete();
+        }else if(event.getSource() == btnGo){
+            Go();
         }
+    }
+    
+    @FXML
+    private void Go() throws IOException{
+        App.setRoot("KelasPage");
     }
     
     @FXML
@@ -142,6 +153,7 @@ public class AdminPage implements Initializable{
         kodeKelas.setText(kelas.getKode_kelas());
         namaKelas.setText(kelas.getNama_kelas());
         idDosen.setText("" + kelas.getId_dosen());
+        kodeKelas1.setText(kelas.getKode_kelas());
     }
     
     @FXML
