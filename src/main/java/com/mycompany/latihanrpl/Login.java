@@ -21,10 +21,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-/**
- *
- * @author asus
- */
 public class Login implements Initializable{
     public LoginConnection loginConn = new LoginConnection();
     

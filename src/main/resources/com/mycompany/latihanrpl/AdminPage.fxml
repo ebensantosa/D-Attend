@@ -26,11 +26,11 @@
             <TextField fx:id="idDosen" />
          </children>
       </VBox>
-      <TableView fx:id="tvKelas" layoutX="316.0" layoutY="69.0" prefHeight="246.0" prefWidth="341.0">
+      <TableView fx:id="tvKelas" layoutX="316.0" layoutY="69.0" onMouseClicked="#handleMouseAction" prefHeight="246.0" prefWidth="341.0">
         <columns>
           <TableColumn fx:id="colKodeKelas" prefWidth="87.0" text="Kode Kelas" />
           <TableColumn fx:id="colNamaKelas" prefWidth="193.0" text="Nama Kelas" />
-            <TableColumn fx:id="colDosen" minWidth="5.0" prefWidth="60.0" text="Dosen" />
+            <TableColumn fx:id="colIdDosen1" minWidth="5.0" prefWidth="60.0" text="ID Dosen" />
         </columns>
       </TableView>
       <Button fx:id="btnInsert" layoutX="14.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="80.0" text="Insert" />
@@ -38,7 +38,7 @@
       <Button fx:id="btnDelete" layoutX="215.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="80.0" text="Delete" />
       <TableView fx:id="tvDosen" layoutX="35.0" layoutY="240.0" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn fx:id="colIdDosen" prefWidth="75.0" text="ID Dosen" />
+          <TableColumn fx:id="colIdDosen2" prefWidth="75.0" text="ID Dosen" />
           <TableColumn fx:id="colNamaDosen" prefWidth="124.0" text="Nama Dosen" />
         </columns>
       </TableView>

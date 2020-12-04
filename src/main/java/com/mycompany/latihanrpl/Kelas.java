@@ -5,15 +5,14 @@
  */
 package com.mycompany.latihanrpl;
 
-import javafx.scene.control.Button;
-
 public class Kelas {
-    String kode_kelas, nama_kelas, nama_dosen;
+    String kode_kelas, nama_kelas;
+    int id_dosen;
     
-    public Kelas(String kode_kelas, String nama_kelas, String nama_dosen){
+    public Kelas(String kode_kelas, String nama_kelas, int id_dosen){
         this.kode_kelas = kode_kelas;
         this.nama_kelas = nama_kelas;
-        this.nama_dosen = nama_dosen;
+        this.id_dosen = id_dosen;
     }
 
     public String getKode_kelas() {
@@ -32,12 +31,12 @@ public class Kelas {
         this.nama_kelas = nama_kelas;
     }
 
-    public String getNama_dosen() {
-        return nama_dosen;
+    public int getId_dosen() {
+        return id_dosen;
     }
 
-    public void setNama_dosen(String nama_dosen) {
-        this.nama_dosen = nama_dosen;
+    public void setId_dosen(int id_dosen) {
+        this.id_dosen = id_dosen;
     }
     
     

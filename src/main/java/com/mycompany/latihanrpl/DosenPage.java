@@ -5,10 +5,12 @@
  */
 package com.mycompany.latihanrpl;
 
-/**
- *
- * @author HEZKIEL
- */
+import java.io.IOException;
+import javafx.fxml.FXML;
+
 public class DosenPage {
-    
+    @FXML
+    private void Logout() throws IOException {
+          App.setRoot("login");
+    }
 }

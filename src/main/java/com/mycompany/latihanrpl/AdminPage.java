@@ -22,6 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class AdminPage implements Initializable{
@@ -41,7 +42,7 @@ public class AdminPage implements Initializable{
     @FXML
     private TableColumn<Kelas, String> colNamaKelas;
     @FXML
-    private TableColumn<Kelas, String> colDosen;    
+    private TableColumn<Kelas, String> colIdDosen1;    
     @FXML
     private Button btnInsert;
     @FXML
@@ -51,7 +52,7 @@ public class AdminPage implements Initializable{
     @FXML
     private TableView<Dosen> tvDosen;
     @FXML
-    private TableColumn<Dosen, Integer> colIdDosen;
+    private TableColumn<Dosen, Integer> colIdDosen2;
     @FXML
     private TableColumn<Dosen, String> colNamaDosen;
     
@@ -136,6 +137,14 @@ public class AdminPage implements Initializable{
     }
     
     @FXML
+    private void handleMouseAction(MouseEvent event){
+        Kelas kelas = tvKelas.getSelectionModel().getSelectedItem();
+        kodeKelas.setText(kelas.getKode_kelas());
+        namaKelas.setText(kelas.getNama_kelas());
+        idDosen.setText("" + kelas.getId_dosen());
+    }
+    
+    @FXML
     private void Logout() throws IOException {
           App.setRoot("login");
     }
@@ -150,8 +159,7 @@ public class AdminPage implements Initializable{
         ObservableList<Kelas> kelasList = FXCollections.observableArrayList();
         Connection conn = DBConnector.getInstance().getConnection();
 //        String query = "SELECT * FROM Kelas";
-        String query = "SELECT k.kode_kelas AS kode_kelas, k.nama_kelas AS nama_kelas, d.nama_dosen AS nama_dosen "
-                + "FROM Kelas k INNER JOIN Dosen d ON k.id_dosen = d.id_dosen";
+        String query = "SELECT kode_kelas, nama_kelas, id_dosen FROM Kelas";
         Statement st;
         ResultSet rs;
         
@@ -160,7 +168,7 @@ public class AdminPage implements Initializable{
             rs = st.executeQuery(query);
             Kelas kelas;
             while(rs.next()){
-                kelas = new Kelas(rs.getString("kode_kelas"), rs.getString("nama_kelas"), rs.getString("nama_dosen"));
+                kelas = new Kelas(rs.getString("kode_kelas"), rs.getString("nama_kelas"), rs.getInt("id_dosen"));
                 kelasList.add(kelas);
             }
         } catch(Exception e){
@@ -195,7 +203,7 @@ public class AdminPage implements Initializable{
         
         colKodeKelas.setCellValueFactory(new PropertyValueFactory<Kelas, String>("kode_kelas"));
         colNamaKelas.setCellValueFactory(new PropertyValueFactory<Kelas, String>("nama_kelas"));
-        colDosen.setCellValueFactory(new PropertyValueFactory<Kelas, String>("nama_dosen"));
+        colIdDosen1.setCellValueFactory(new PropertyValueFactory<Kelas, String>("id_dosen"));
         
         tvKelas.setItems(list);
     }
@@ -203,7 +211,7 @@ public class AdminPage implements Initializable{
     private void showDosen(){
         ObservableList<Dosen> list = getDosenList();
         
-        colIdDosen.setCellValueFactory(new PropertyValueFactory<Dosen, Integer>("id_dosen"));
+        colIdDosen2.setCellValueFactory(new PropertyValueFactory<Dosen, Integer>("id_dosen"));
         colNamaDosen.setCellValueFactory(new PropertyValueFactory<Dosen, String>("nama_dosen"));
         
         tvDosen.setItems(list);
