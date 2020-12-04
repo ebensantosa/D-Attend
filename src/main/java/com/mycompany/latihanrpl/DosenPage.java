@@ -90,7 +90,6 @@ public class DosenPage implements Initializable{
     private void handleMouseAction(MouseEvent event){
         Kelas kelas = tvKelas.getSelectionModel().getSelectedItem();
         kodeKelas.setText(kelas.getKode_kelas());
-        System.out.println(kelas.getKode_kelas());
     }
     
     @Override
