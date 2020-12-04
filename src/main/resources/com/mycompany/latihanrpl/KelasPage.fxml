@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.latihanrpl.KelasPage">
    <children>
       <TableView layoutX="41.0" layoutY="100.0" prefHeight="147.0" prefWidth="538.0">
         <columns>
@@ -15,7 +15,7 @@
             <TableColumn prefWidth="329.0" text="Nama Kelas" />
         </columns>
       </TableView>
-      <Button layoutX="509.0" layoutY="30.0" mnemonicParsing="false" text="Logout" />
+      <Button layoutX="509.0" layoutY="30.0" mnemonicParsing="false" onAction="#Logout" text="Logout" />
       <Button layoutX="527.0" layoutY="286.0" mnemonicParsing="false" text="Go" />
       <TextField layoutX="424.0" layoutY="286.0" prefHeight="25.0" prefWidth="103.0" />
       <Text layoutX="425.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Masukkan Kode Kelas" wrappingWidth="125.876953125" />

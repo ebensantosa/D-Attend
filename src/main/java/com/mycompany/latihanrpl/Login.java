@@ -61,7 +61,7 @@ public class Login implements Initializable{
                if(query1.getInt(1) == 1 && isAdmin == 1) {
                      App.setRoot("AdminPage");
                }else if(query1.getInt(1) == 0 && isAdmin == 0) {
-                     App.setRoot("DosenPage");
+                     App.setRoot("KelasPage");
                }else {
                    txtLabel.setText("Login Gagal,Coba lagi !!!");
                }
