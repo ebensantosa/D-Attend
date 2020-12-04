@@ -50,17 +50,23 @@ public class Login implements Initializable{
        Connection conn = DBConnector.getInstance().getConnection();
        String email = txtEmail.getText();
        String password = txtPassword.getText();
+       String verifyAdmin = "SELECT isAdmin FROM User WHERE email = '" 
+               + email + "' AND password = '" + password + "'";
        String verifyLogin = "SELECT count(1) FROM User WHERE email = '" 
                + email + "' AND password = '" + password + "'";
        
        try {
            Statement statement = conn.createStatement();
-           ResultSet queryResult = statement.executeQuery(verifyLogin);
+           ResultSet query1 = statement.executeQuery(verifyLogin);
+           ResultSet query2 = statement.executeQuery(verifyAdmin);
            
-           while (queryResult.next()){
-               if(queryResult.getInt(1) == 1) {
+           while (query1.next()){
+               int isAdmin = query2.getInt(1);
+               if(query1.getInt(1) == 1 && isAdmin == 1) {
                      App.setRoot("AdminPage");
-               } else {
+               }else if(query1.getInt(1) == 0 && isAdmin == 0) {
+                     App.setRoot("DosenPage");
+               }else {
                    txtLabel.setText("Login Gagal,Coba lagi !!!");
                }
            }

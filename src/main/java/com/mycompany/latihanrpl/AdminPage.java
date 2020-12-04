@@ -108,8 +108,18 @@ public class AdminPage implements Initializable{
     }
     
     @FXML
-    public void deleteData(){
-        
+    public void delete(){
+        Connection conn = DBConnector.getInstance().getConnection();
+        String query = "DELETE FROM kelas WHERE kode_kelas='" + kodeKelas.getText() + "'";
+        try{
+            Statement st = conn.createStatement();
+            st.executeUpdate(query);
+            labelStatus.setText("Hapus Data Sukses");
+            showKelas();
+        }catch(SQLException e){
+            e.printStackTrace();
+            labelStatus.setText("Hapus Data Gagal");
+        }
     }
 
     @FXML
@@ -120,6 +130,8 @@ public class AdminPage implements Initializable{
             insert();
         }else if(event.getSource() == btnUpdate){
             update();
+        }else if(event.getSource() == btnDelete){
+            delete();
         }
     }
     
