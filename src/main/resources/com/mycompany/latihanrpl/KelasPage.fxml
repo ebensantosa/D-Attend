@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.latihanrpl.KelasPage">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.latihanrpl.KelasPage">
    <children>
-      <Text layoutX="35.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard Dosen" />
-      <TableView fx:id="tvPertemuan" layoutX="22.0" layoutY="72.0" prefHeight="246.0" prefWidth="557.0">
+      <Button layoutX="601.0" layoutY="14.0" mnemonicParsing="false" onAction="#Logout" text="Logout" />
+      <Label fx:id="txtLabel" layoutX="503.0" layoutY="18.0" prefHeight="17.0" prefWidth="98.0" text="Welcome" />
+      <VBox layoutX="14.0" layoutY="69.0" prefHeight="111.0" prefWidth="81.0" spacing="15.0" />
+      <VBox layoutX="95.0" layoutY="69.0" prefHeight="111.0" prefWidth="200.0" spacing="5.0" />
+      <TableView fx:id="tvKelas" layoutX="21.0" layoutY="69.0" onMouseClicked="#handleMouseAction" prefHeight="246.0" prefWidth="636.0">
         <columns>
-            <TableColumn fx:id="colIdDosen" prefWidth="93.0" text="No" />
-            <TableColumn fx:id="colMingguPertemuan" prefWidth="463.0" text="Minggu Pertemuan" />
+          <TableColumn fx:id="colNim" prefWidth="93.0" text="NIM" />
+            <TableColumn fx:id="colNamaMhs" minWidth="5.0" prefWidth="184.0" text="Nama Mahasiswa" />
+            <TableColumn fx:id="colPertemuan" minWidth="5.0" prefWidth="96.0" text="Pertemuan Ke-" />
+            <TableColumn fx:id="colStatus" minWidth="5.0" prefWidth="129.0" text="Status" />
+            <TableColumn fx:id="colWaktu" minWidth="5.0" prefWidth="133.0" text="Waktu " />
         </columns>
       </TableView>
-      <Button layoutX="525.0" layoutY="26.0" mnemonicParsing="false" onAction="#Logout" text="Logout" />
-      <Button fx:id="btnGo" layoutX="532.0" layoutY="343.0" mnemonicParsing="false" onAction="#Go" text="Go" />
-      <TextField fx:id="noPertemuan" layoutX="421.0" layoutY="343.0" onMouseClicked="#handleButtonAction" prefHeight="25.0" prefWidth="111.0" />
+      <Label fx:id="labelKelas" layoutX="21.0" layoutY="22.0" prefHeight="17.0" prefWidth="300.0">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
    </children>
 </AnchorPane>

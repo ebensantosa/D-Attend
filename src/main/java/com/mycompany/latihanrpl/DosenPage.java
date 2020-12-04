@@ -8,6 +8,7 @@ package com.mycompany.latihanrpl;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ResourceBundle;
@@ -17,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -29,6 +31,8 @@ import javafx.scene.input.MouseEvent;
  */
 public class DosenPage implements Initializable{
     
+    private static String detailKodeKelas;
+    
     @FXML
     private TextField kodeKelas;
     @FXML
@@ -39,14 +43,35 @@ public class DosenPage implements Initializable{
     private TableColumn<Kelas, String> colNamaKelas;
     @FXML
     private Button btnGO;
+    @FXML
+    private Label labelStatus;
             
+    public static String getKodeKelas(){
+        return detailKodeKelas;
+    }
+    
     @FXML
     private void Logout() throws IOException {
           App.setRoot("login");
     }
     @FXML
     private void Go() throws IOException{
-        App.setRoot("KelasPage");
+        Connection conn = DBConnector.getInstance().getConnection();
+        PreparedStatement ps;
+        ResultSet rs;
+        try{
+           String query = "SELECT kode_kelas FROM Kelas WHERE kode_kelas = '" + kodeKelas.getText() + "'";
+           ps = conn.prepareStatement(query);
+           rs = ps.executeQuery();
+           if(rs.next()){
+               detailKodeKelas = kodeKelas.getText();
+               App.setRoot("KelasPage");
+           } else{
+               labelStatus.setText("Kode Kelas tidak ditemukan!");
+           }
+        } catch(Exception e){
+            e.printStackTrace();
+        }       
     }
 
     public ObservableList<Kelas> getKelasList(){
@@ -70,7 +95,7 @@ public class DosenPage implements Initializable{
         return kelasList;
     }
     
-    private void showKelas(){
+    public void showKelas(){
         ObservableList<Kelas> list = getKelasList();
         
         colKodeKelas.setCellValueFactory(new PropertyValueFactory<Kelas, String>("kode_kelas"));
