@@ -158,7 +158,6 @@ public class AdminPage implements Initializable{
     public ObservableList<Kelas> getKelasList(){
         ObservableList<Kelas> kelasList = FXCollections.observableArrayList();
         Connection conn = DBConnector.getInstance().getConnection();
-//        String query = "SELECT * FROM Kelas";
         String query = "SELECT kode_kelas, nama_kelas, id_dosen FROM Kelas";
         Statement st;
         ResultSet rs;

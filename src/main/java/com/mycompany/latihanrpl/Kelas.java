@@ -15,6 +15,11 @@ public class Kelas {
         this.id_dosen = id_dosen;
     }
 
+    public Kelas(String kode_kelas, String nama_kelas) {
+        this.kode_kelas = kode_kelas;
+        this.nama_kelas = nama_kelas;
+    }   
+
     public String getKode_kelas() {
         return kode_kelas;
     }
