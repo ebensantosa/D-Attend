@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="697.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.latihanrpl.LaporanPage">
+   <children>
+      <Text layoutX="56.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laporan Presensi Mahasiswa" wrappingWidth="214.13671875" />
+      <TableView fx:id="tvLaporan" layoutX="23.0" layoutY="75.0" prefHeight="200.0" prefWidth="568.0">
+        <columns>
+            <TableColumn fx:id="colPertemuan" prefWidth="143.0" text="Pertemuan" />
+            <TableColumn fx:id="colHadir" prefWidth="135.0" text="Hadir" />
+            <TableColumn fx:id="colTidakHadir" prefWidth="126.0" text="Tidak Hadir" />
+            <TableColumn fx:id="colTotal" prefWidth="163.0" text="Total Mahasiswa" />
+        </columns>
+      </TableView>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#kembali" text="Kembali" />
+      <Button layoutX="527.0" layoutY="14.0" mnemonicParsing="false" onAction="#Logout" text="Logout" />
+      <Label fx:id="labelKelas" layoutX="527.0" layoutY="47.0" />
+      <LineChart fx:id="chartLaporan" layoutX="27.0" layoutY="283.0" prefHeight="400.0" prefWidth="568.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+   </children>
+</AnchorPane>

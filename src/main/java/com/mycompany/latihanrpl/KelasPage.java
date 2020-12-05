@@ -36,7 +36,8 @@ public class KelasPage implements Initializable{
     
     private static int pertemuan;
     private static int idPresensi;
-        
+    private static String namaKelas;
+    
     @FXML
     private TableView<Presensi> tvKelas;
     @FXML
@@ -64,6 +65,11 @@ public class KelasPage implements Initializable{
         return pertemuan;
     }    
     
+    public static String getNamaKelas(){
+        return namaKelas;
+    }
+    
+    
     @FXML
     private void Logout() throws IOException {
           App.setRoot("login");
@@ -77,9 +83,13 @@ public class KelasPage implements Initializable{
         }
     }
     
+    @FXML
+    private void goLaporan() throws IOException{
+        App.setRoot("LaporanPage");
+    }
+    
     public ObservableList<Presensi> getPresensiList(){
         ObservableList<Presensi> presensiList = FXCollections.observableArrayList();
-//        Connection conn = DBConnector.getInstance().getConnection();
         String query = "SELECT k.nama_kelas AS nama_kelas, m.nim AS nim, m.nama_mahasiswa AS nama_mahasiswa, p.status AS status, p.waktu AS waktu, p.pertemuan AS pertemuan, p.id_presensi AS id_presensi "
                 + "FROM Kelas k INNER JOIN Presensi p ON k.kode_kelas = p.kode_kelas "
                 + "INNER JOIN Mahasiswa m ON p.nim = m.nim "
@@ -104,6 +114,7 @@ public class KelasPage implements Initializable{
                 presensi.setNamaMahasiswa(rs.getString("nama_mahasiswa"));                
                 presensiList.add(presensi);
                 labelKelas.setText(rs.getString("nama_kelas"));
+                namaKelas  = rs.getString("nama_kelas");
             }            
         } catch(Exception e){
             e.printStackTrace();
@@ -197,36 +208,10 @@ public class KelasPage implements Initializable{
     private void handleMouseAction(MouseEvent event) throws SQLException{
         Presensi presensi = tvKelas.getSelectionModel().getSelectedItem();
         idPresensi = presensi.getIdPresensi();
-//        DateTimeFormatter formatTanggal = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-//        if(presensi.getStatus().equals("Hadir")){
-//            String query = "UPDATE presensi SET status = 'Tidak Hadir', waktu = '" + formatTanggal.format(LocalDateTime.now()) + "' "
-//                    + "WHERE id_presensi = " + presensi.getIdPresensi();
-//            try{
-//                Connection conn = DBConnector.getInstance().getConnection();
-//                Statement st = conn.createStatement();
-//                st.executeUpdate(query);
-//                conn.close();
-//            }catch(SQLException e){
-//                e.printStackTrace();
-//            }
-//        } else if(presensi.getStatus().equals("Tidak Hadir")){
-//            try{
-//                Connection conn = DBConnector.getInstance().getConnection();
-//                Statement st = conn.createStatement();
-//                String query = "UPDATE presensi SET status = 'Hadir', waktu = '-' "
-//                    + "WHERE id_presensi = " + presensi.getIdPresensi();
-//                st.executeUpdate(query);
-//                conn.close();
-//            }catch(SQLException e){
-//                e.printStackTrace();
-//            }
-//        }
-//        showPresensi();
     }
     
      @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        Connection conn = DBConnector.getInstance().getConnection();
         Statement st;
         ResultSet rs;
         try{
@@ -249,24 +234,6 @@ public class KelasPage implements Initializable{
         showPresensi();
         search_user();
     }
-  
-//    public ResultSet SearchTextList(String nma)throws SQLException{
-//       String sql = "select * from presensi where nim like ?";
-//       PreparedStatement pst;
-//       ResultSet rs;
-//       pst = Login.conn.prepareStatement(sql);
-//       pst.setString(1, nma);
-//       rs = pst.executeQuery();
-//       return rs;
-//    }
-//
-//    private void txcariKeyReleased(KeyEvent evt){
-//        String nama = txcari.getText();
-//        Presensi presensi = new 
-//        try{
-//            tvKelas.setMo
-//        }
-//    }
     
     @FXML
     void search_user() {          
