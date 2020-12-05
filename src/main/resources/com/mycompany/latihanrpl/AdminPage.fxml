@@ -7,11 +7,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.latihanrpl.AdminPage">
    <children>
       <Button layoutX="601.0" layoutY="14.0" mnemonicParsing="false" onAction="#Logout" text="Logout" />
-      <Label fx:id="txtLabel" layoutX="484.0" layoutY="18.0" prefHeight="17.0" prefWidth="98.0" text="Welcome" />
       <VBox layoutX="14.0" layoutY="69.0" prefHeight="111.0" prefWidth="81.0" spacing="15.0">
          <children>
             <Label text="Kode Kelas" />
@@ -45,5 +45,11 @@
       <Label fx:id="labelStatus" layoutX="14.0" layoutY="46.0" prefHeight="17.0" prefWidth="300.0" />
       <TextField fx:id="kodeKelas1" layoutX="484.0" layoutY="340.0" prefHeight="25.0" prefWidth="114.0" />
       <Button fx:id="btnGo" layoutX="597.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="58.0" text="Go" />
+      <Label layoutX="544.0" layoutY="440.0" text="Lihat Log User">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="616.0" layoutY="467.0" mnemonicParsing="false" onAction="#Lihat" text="Lihat" />
    </children>
 </AnchorPane>

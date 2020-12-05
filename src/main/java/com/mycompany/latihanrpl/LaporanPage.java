@@ -46,10 +46,7 @@ public class LaporanPage implements Initializable{
     private TableColumn<Laporan, Integer>  colTotal;
     
     @FXML
-    private TableColumn<Laporan, String> colWaktu;
-    
-//    @FXML
-//    private LineChart<?, ?> chartLaporan;
+    private TableColumn<Laporan, String> colWaktu;   
      
     @FXML
     private TextField filterField;
@@ -60,11 +57,7 @@ public class LaporanPage implements Initializable{
     }
     
     @FXML private void kembali() throws IOException{
-        if(Login.getIsAdmin() == 1){
-            App.setRoot("AdminPage");
-        }else{
-            App.setRoot("DosenPage");
-        }
+        App.setRoot("KelasPage");
     }            
     
     public ObservableList<Laporan> getLaporanList(){
@@ -137,44 +130,11 @@ public class LaporanPage implements Initializable{
         sortedData.comparatorProperty().bind(tvLaporan.comparatorProperty());  
         tvLaporan.setItems(sortedData);      
     }  
-
-//    private void lineChart(){
-//        final NumberAxis xAxis = new NumberAxis();
-//        final NumberAxis yAxis = new NumberAxis();
-//        xAxis.setLabel("Number of Month");
-//        //creating the chart
-//        chartLaporan = 
-//                new LineChart<Number,Number>(xAxis,yAxis);
-//
-//        chartLaporan.setTitle("Stock Monitoring, 2010");
-//        //defining a series
-//        XYChart.Series series = new XYChart.Series();
-//        series.setName("My portfolio");
-//        //populating the series with data         
-//        try 
-//        {            
-//            Statement stmt = Login.conn.createStatement();
-//            ResultSet rs = stmt.executeQuery("select pertemuan, COUNT(CASE WHEN status = 'Hadir' THEN 1 END) AS Hadir, COUNT(CASE WHEN status = 'Tidak Hadir' THEN 1 END) AS TidakHadir, COUNT(NIM) AS Total "
-//                + "FROM presensi WHERE kode_kelas = '"+DosenPage.getKodeKelas()+ "' "
-//                + "GROUP BY pertemuan");
-//
-//            //Iterate through results.
-//            while(rs.next())
-//            {
-//                series.getData().add(new XYChart.Data(rs.getInt("pertemuan"), rs.getInt("Hadir")));//Add data to Chart. Changed the second input to Integer due to LineChart<Number,Number>. This should work, though I haven't tested it.
-//            }
-//        }
-//        catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//        chartLaporan.getData().add(series);        
-//    }  
       
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       showLaporan();
       filter_waktu();
-//      lineChart();
     } 
     
 }

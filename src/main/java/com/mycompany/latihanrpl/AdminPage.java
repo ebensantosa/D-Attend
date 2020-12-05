@@ -55,11 +55,13 @@ public class AdminPage implements Initializable{
     @FXML
     private Button btnGo;
     @FXML
+    private Button btnLog;
+    @FXML
     private TableView<Dosen> tvDosen;
     @FXML
     private TableColumn<Dosen, Integer> colIdDosen2;
     @FXML
-    private TableColumn<Dosen, String> colNamaDosen;
+    private TableColumn<Dosen, String> colNamaDosen;    
     
     private static String detailKodeKelas;
     
@@ -181,6 +183,11 @@ public class AdminPage implements Initializable{
     @FXML
     private void Logout() throws IOException {
           App.setRoot("login");
+    }
+    
+    @FXML 
+    private void Lihat() throws IOException {
+        App.setRoot("LogUser");
     }
 
     @Override

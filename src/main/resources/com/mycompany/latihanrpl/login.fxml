@@ -40,6 +40,6 @@
       </ImageView>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="81.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
       <Text fill="WHITE" layoutX="93.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Created By :" wrappingWidth="173.13671875" />
-      <Text fill="WHITE" layoutX="93.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nafarel Triyoga Maskuncoro(71180336)        Hezkiel Rivaldo Siregar(71180367)                         Ebentera Sanatosa(71180358)" wrappingWidth="268.0" />
+      <Text fill="WHITE" layoutX="93.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nafarel Triyoga Maskuncoro(71180336)        Hezkiel Rivaldo Siregar(71180367)                         Ebentera Santosa(71180358)" wrappingWidth="268.0" />
    </children>
 </AnchorPane>

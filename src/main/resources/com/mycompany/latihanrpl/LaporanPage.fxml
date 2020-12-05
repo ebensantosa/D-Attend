@@ -23,7 +23,7 @@
       </TableView>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#kembali" text="Kembali" />
       <Button layoutX="637.0" layoutY="14.0" mnemonicParsing="false" onAction="#Logout" text="Logout" />
-      <Label fx:id="labelKelas" layoutX="286.0" layoutY="117.0" prefHeight="27.0" prefWidth="405.0" textAlignment="RIGHT">
+      <Label fx:id="labelKelas" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="286.0" layoutY="117.0" prefHeight="27.0" prefWidth="405.0" textAlignment="RIGHT">
          <font>
             <Font size="18.0" />
          </font></Label>

@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,6 +56,7 @@ public class Login implements Initializable{
        Connection conn = DBConnector.getInstance().getConnection();
        String email = txtEmail.getText();
        String password = txtPassword.getText();
+       DateTimeFormatter formatTanggal = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
        String verifyAdmin = "SELECT isAdmin FROM User WHERE email = '" 
                + email + "' AND password = '" + password + "'";
        String verifyLogin = "SELECT count(1) FROM User WHERE email = '" 
@@ -67,15 +70,24 @@ public class Login implements Initializable{
            while (query1.next()){
                int isAdmin = query2.getInt(1);
                if(query1.getInt(1) == 1 && isAdmin == 1) {
-                     isAdminDosen = isAdmin;
+                     isAdminDosen = isAdmin;                    
+                     String query = "INSERT INTO log_user (email_user, waktu_login) "
+                             + "VALUES ('"+email+"', '"+formatTanggal.format(LocalDateTime.now())+"')";
+                     Statement st2 = conn.createStatement();
+                     st2.execute(query);
                      App.setRoot("AdminPage");
                }else if(query1.getInt(1) == 0 && isAdmin == 0) {
-                     isAdminDosen = isAdmin;
-                     App.setRoot("DosenPage");
+                     isAdminDosen = isAdmin;                     
+                     String query = "INSERT INTO log_user (email_user, waktu_login) "
+                             + "VALUES ('"+email+"', '"+formatTanggal.format(LocalDateTime.now())+"')";
+                     Statement st3 = conn.createStatement();
+                     st3.execute(query);
+                     App.setRoot("DosenPage");                     
                }else {
                    txtLabel.setText("Login Gagal,Coba lagi !!!");
                }
            }
+           conn.close();
        } catch (Exception e){
            e.printStackTrace();
            e.getCause();
