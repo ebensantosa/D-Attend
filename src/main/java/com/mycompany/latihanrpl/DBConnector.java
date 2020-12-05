@@ -35,4 +35,15 @@ public class DBConnector {
             return null;
         }      
     }
+    
+//    public static void executeQuery(String query){
+//        Connection conn = getConnection();
+//        Statement st;
+//        try{
+//            st = conn.createStatement();
+//            st.executeUpdate(query);
+//        } catch(Exception e){
+//            e.printStackTrace();
+//        }
+//    }
 }

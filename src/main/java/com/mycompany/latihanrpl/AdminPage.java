@@ -71,19 +71,19 @@ public class AdminPage implements Initializable{
     @FXML 
     public void insert(){
        if(kodeKelas.getText().isEmpty() == false && namaKelas.getText().isEmpty() == false && idDosen.getText().isEmpty() == false){
-           Connection conn = DBConnector.getInstance().getConnection();
+//           Connection conn = DBConnector.getInstance().getConnection();
            String insertData = "INSERT INTO kelas values('" + kodeKelas.getText() + "','" + namaKelas.getText() + "','" + idDosen.getText() + "')";
            String verifyData = "SELECT count(1) FROM kelas WHERE kode_kelas = '" + kodeKelas.getText() + "'";
            
            try {
-            Statement statement = conn.createStatement();
+            Statement statement = Login.conn.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyData);
            
                 while (queryResult.next()){
                     if(queryResult.getInt(1) == 1) {
                         labelStatus.setText("Tambah Data Gagal! Kelas dengan kode " + kodeKelas.getText() + " sudah pernah dibuat");
                     }else {
-                        Statement st = conn.createStatement();
+                        Statement st = Login.conn.createStatement();
                         try{
                             st.executeUpdate(insertData);
                             labelStatus.setText("Input Data Sukses");
@@ -106,10 +106,10 @@ public class AdminPage implements Initializable{
     
     @FXML
     private void update(){
-        Connection conn = DBConnector.getInstance().getConnection();
+//        Connection conn = DBConnector.getInstance().getConnection();
         String query = "UPDATE kelas SET nama_kelas ='" + namaKelas.getText() +"',id_dosen=" + idDosen.getText() + " WHERE kode_kelas = '" + kodeKelas.getText() + "'";
         try{
-            Statement st = conn.createStatement();
+            Statement st = Login.conn.createStatement();
             st.executeUpdate(query);
             labelStatus.setText("Update Data Sukses");
             showKelas();
@@ -121,10 +121,10 @@ public class AdminPage implements Initializable{
     
     @FXML
     public void delete(){
-        Connection conn = DBConnector.getInstance().getConnection();
+//        Connection conn = DBConnector.getInstance().getConnection();
         String query = "DELETE FROM kelas WHERE kode_kelas='" + kodeKelas.getText() + "'";
         try{
-            Statement st = conn.createStatement();
+            Statement st = Login.conn.createStatement();
             st.executeUpdate(query);
             labelStatus.setText("Hapus Data Sukses");
             showKelas();
@@ -151,12 +151,12 @@ public class AdminPage implements Initializable{
     
      @FXML
     private void Go() throws IOException{
-        Connection conn = DBConnector.getInstance().getConnection();
+//        Connection conn = DBConnector.getInstance().getConnection();
         PreparedStatement ps;
         ResultSet rs;
         try{
            String query = "SELECT kode_kelas FROM Kelas WHERE kode_kelas = '" + kodeKelas.getText() + "'";
-           ps = conn.prepareStatement(query);
+           ps = Login.conn.prepareStatement(query);
            rs = ps.executeQuery();
            if(rs.next()){
                detailKodeKelas = kodeKelas.getText();
@@ -191,13 +191,13 @@ public class AdminPage implements Initializable{
     
     public ObservableList<Kelas> getKelasList(){
         ObservableList<Kelas> kelasList = FXCollections.observableArrayList();
-        Connection conn = DBConnector.getInstance().getConnection();
+//        Connection conn = DBConnector.getInstance().getConnection();
         String query = "SELECT kode_kelas, nama_kelas, id_dosen FROM Kelas";
         Statement st;
         ResultSet rs;
         
         try{
-            st = conn.createStatement();
+            st = Login.conn.createStatement();
             rs = st.executeQuery(query);
             Kelas kelas;
             while(rs.next()){
@@ -212,13 +212,13 @@ public class AdminPage implements Initializable{
     
     public ObservableList<Dosen> getDosenList(){
         ObservableList<Dosen> dosenList = FXCollections.observableArrayList();
-        Connection conn = DBConnector.getInstance().getConnection();
+//        Connection conn = DBConnector.getInstance().getConnection();
         String query = "SELECT * FROM Dosen";
         Statement st;
         ResultSet rs;
         
         try{
-            st = conn.createStatement();
+            st = Login.conn.createStatement();
             rs = st.executeQuery(query);
             Dosen dosen;
             while(rs.next()){

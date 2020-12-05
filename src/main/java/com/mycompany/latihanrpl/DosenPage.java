@@ -56,12 +56,12 @@ public class DosenPage implements Initializable{
     }
     @FXML
     private void Go() throws IOException{
-        Connection conn = DBConnector.getInstance().getConnection();
+//        Connection conn = DBConnector.getInstance().getConnection();
         PreparedStatement ps;
         ResultSet rs;
         try{
            String query = "SELECT kode_kelas FROM Kelas WHERE kode_kelas = '" + kodeKelas.getText() + "'";
-           ps = conn.prepareStatement(query);
+           ps = Login.conn.prepareStatement(query);
            rs = ps.executeQuery();
            if(rs.next()){
                detailKodeKelas = kodeKelas.getText();
@@ -76,13 +76,13 @@ public class DosenPage implements Initializable{
 
     public ObservableList<Kelas> getKelasList(){
         ObservableList<Kelas> kelasList = FXCollections.observableArrayList();
-        Connection conn = DBConnector.getInstance().getConnection();
+//        Connection conn = DBConnector.getInstance().getConnection();
         String query = "SELECT * FROM Kelas";
         Statement st;
         ResultSet rs;
         
         try{
-            st = conn.createStatement();
+            st = Login.conn.createStatement();
             rs = st.executeQuery(query);
             Kelas kelas;
             while(rs.next()){

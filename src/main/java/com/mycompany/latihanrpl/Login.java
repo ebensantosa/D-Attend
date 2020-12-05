@@ -24,6 +24,8 @@ import javafx.stage.Stage;
 public class Login implements Initializable{
     public LoginConnection loginConn = new LoginConnection();
     
+    public static Connection conn = DBConnector.getInstance().getConnection();
+    
     private static int isAdminDosen;
     
     @FXML

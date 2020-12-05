@@ -11,20 +11,32 @@
    <children>
       <Button layoutX="601.0" layoutY="14.0" mnemonicParsing="false" onAction="#Logout" text="Logout" />
       <Label fx:id="txtLabel" layoutX="503.0" layoutY="18.0" prefHeight="17.0" prefWidth="98.0" text="Welcome" />
-      <TableView fx:id="tvKelas" layoutX="21.0" layoutY="108.0" onMouseClicked="#handleMouseAction" prefHeight="246.0" prefWidth="636.0">
+      <TableView fx:id="tvKelas" layoutX="21.0" layoutY="108.0" onMouseClicked="#handleMouseAction" prefHeight="246.0" prefWidth="596.0">
         <columns>
-          <TableColumn fx:id="colNim" prefWidth="93.0" text="NIM" />
-            <TableColumn fx:id="colNamaMhs" minWidth="5.0" prefWidth="184.0" text="Nama Mahasiswa" />
+          <TableColumn fx:id="colNim" prefWidth="83.0" text="NIM" />
+            <TableColumn fx:id="colNamaMhs" minWidth="5.0" prefWidth="169.0" text="Nama Mahasiswa" />
             <TableColumn fx:id="colPertemuan" minWidth="5.0" prefWidth="96.0" text="Pertemuan Ke-" />
-            <TableColumn fx:id="colStatus" minWidth="5.0" prefWidth="129.0" text="Status" />
-            <TableColumn fx:id="colWaktu" minWidth="5.0" prefWidth="133.0" text="Waktu " />
+            <TableColumn fx:id="colStatus" minWidth="5.0" prefWidth="110.0" text="Status" />
+            <TableColumn fx:id="colWaktu" minWidth="5.0" prefWidth="137.0" text="Waktu " />
         </columns>
       </TableView>
-      <Label fx:id="labelKelas" layoutX="21.0" layoutY="59.0" prefHeight="17.0" prefWidth="300.0">
+      <Label fx:id="labelKelas" layoutX="21.0" layoutY="59.0" prefHeight="35.0" prefWidth="636.0">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
       <Button fx:id="btnKembali" layoutX="43.0" layoutY="14.0" mnemonicParsing="false" onAction="#Kembali" text="Kembali" />
+      <Button fx:id="btnHadir" layoutX="629.0" layoutY="108.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="54.0" text="Hadir" />
+      <Button fx:id="btnAbsen" layoutX="627.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="59.0" text="Absen" />
+      <Button fx:id="btnPertemuan" layoutX="23.0" layoutY="407.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="75.0" text="Buat">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="21.0" layoutY="380.0" text="Buat Pertemuan Baru">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

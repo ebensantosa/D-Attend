@@ -9,7 +9,7 @@ public class Presensi {
     private String nim, namaMahasiswa, status, waktu;
     private int idPresensi, pertemuan;
 
-    public Presensi(String nim, String status, String waktu, int id_Presensi, int pertemuan) {
+    public Presensi(String nim, String status, String waktu, int idPresensi, int pertemuan) {
         this.nim = nim;        
         this.status = status;
         this.waktu = waktu;
