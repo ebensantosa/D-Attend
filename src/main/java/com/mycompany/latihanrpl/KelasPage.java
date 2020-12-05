@@ -8,6 +8,7 @@ package com.mycompany.latihanrpl;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,6 +18,8 @@ import java.time.temporal.TemporalAccessor;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,6 +29,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 public class KelasPage implements Initializable{
@@ -53,7 +57,8 @@ public class KelasPage implements Initializable{
     private Button btnAbsen;
     @FXML
     private Button btnPertemuan;
-    
+     @FXML
+    private TextField filterField;
     
     public static int getPertemuan(){
         return pertemuan;
@@ -242,5 +247,57 @@ public class KelasPage implements Initializable{
             e.printStackTrace();
         }
         showPresensi();
+        search_user();
     }
+  
+//    public ResultSet SearchTextList(String nma)throws SQLException{
+//       String sql = "select * from presensi where nim like ?";
+//       PreparedStatement pst;
+//       ResultSet rs;
+//       pst = Login.conn.prepareStatement(sql);
+//       pst.setString(1, nma);
+//       rs = pst.executeQuery();
+//       return rs;
+//    }
+//
+//    private void txcariKeyReleased(KeyEvent evt){
+//        String nama = txcari.getText();
+//        Presensi presensi = new 
+//        try{
+//            tvKelas.setMo
+//        }
+//    }
+    
+    @FXML
+    void search_user() {          
+        ObservableList<Presensi> list = getPresensiList();        
+        
+        colNim.setCellValueFactory(new PropertyValueFactory<Presensi, String>("nim"));
+        colNamaMhs.setCellValueFactory(new PropertyValueFactory<Presensi, String>("namaMahasiswa"));
+        colPertemuan.setCellValueFactory(new PropertyValueFactory<Presensi, Integer>("pertemuan"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<Presensi, String>("status"));
+        colWaktu.setCellValueFactory(new PropertyValueFactory<Presensi, String>("waktu"));
+        
+        tvKelas.setItems(list);
+        FilteredList<Presensi> filteredData = new FilteredList<>(list, b -> true);  
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+        filteredData.setPredicate(presensi -> {
+    if (newValue == null || newValue.isEmpty()) {
+     return true;
+    }    
+    String lowerCaseFilter = newValue.toLowerCase();
+    
+    if (presensi.getNim().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+     return true; // Filter matches username
+    } else if (presensi.getNamaMahasiswa().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+     return true; // Filter matches password
+    } else  
+          return false; // Does not match.
+   });
+  });  
+  SortedList<Presensi> sortedData = new SortedList<>(filteredData);  
+  sortedData.comparatorProperty().bind(tvKelas.comparatorProperty());  
+  tvKelas.setItems(sortedData);      
+    }
+
 }
