@@ -59,7 +59,7 @@ public class KelasPage implements Initializable{
     @FXML
     private Button btnPertemuan;
      @FXML
-    private TextField filterField;
+    private TextField searchField;
     
     public static int getPertemuan(){
         return pertemuan;
@@ -150,7 +150,7 @@ public class KelasPage implements Initializable{
     
     @FXML
     private void mahasiswaAbsen(){                      
-        String queryAbsen = "UPDATE presensi SET status = 'Tidak Hadir', waktu = '-' "
+        String queryAbsen = "UPDATE presensi SET status = 'Tidak Hadir', waktu = '0000-00-00 00:00:00' "
                     + "WHERE id_presensi = " + idPresensi + ";";
         try{
             Statement st = Login.conn.createStatement();
@@ -190,7 +190,7 @@ public class KelasPage implements Initializable{
         } catch(Exception e){
             e.printStackTrace();
         }
-        showPresensi();
+        App.setRoot("KelasPage");
     }
     
     @FXML
@@ -247,24 +247,24 @@ public class KelasPage implements Initializable{
         
         tvKelas.setItems(list);
         FilteredList<Presensi> filteredData = new FilteredList<>(list, b -> true);  
-        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
-        filteredData.setPredicate(presensi -> {
-    if (newValue == null || newValue.isEmpty()) {
-     return true;
-    }    
-    String lowerCaseFilter = newValue.toLowerCase();
-    
-    if (presensi.getNim().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
-     return true; // Filter matches username
-    } else if (presensi.getNamaMahasiswa().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-     return true; // Filter matches password
-    } else  
-          return false; // Does not match.
-   });
-  });  
-  SortedList<Presensi> sortedData = new SortedList<>(filteredData);  
-  sortedData.comparatorProperty().bind(tvKelas.comparatorProperty());  
-  tvKelas.setItems(sortedData);      
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(presensi -> {
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
+            }    
+            String lowerCaseFilter = newValue.toLowerCase();
+
+            if (presensi.getNim().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+                return true;
+            } else if (presensi.getNamaMahasiswa().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                return true;
+            } else  
+                return false;
+           });
+        });  
+        SortedList<Presensi> sortedData = new SortedList<>(filteredData);  
+        sortedData.comparatorProperty().bind(tvKelas.comparatorProperty());  
+        tvKelas.setItems(sortedData);      
     }
 
 }

@@ -5,18 +5,16 @@
  */
 package com.mycompany.latihanrpl;
 
-/**
- *
- * @author Eben
- */
 public class Laporan {
    private int pertemuan, hadir, tidakHadir, total;
+   private String waktu;
 
-    public Laporan(int pertemuan, int hadir, int tidakHadir, int total) {
+    public Laporan(int pertemuan, int hadir, int tidakHadir, int total, String waktu) {
         this.pertemuan = pertemuan;
         this.hadir = hadir;
         this.tidakHadir = tidakHadir;
         this.total = total;
+        this.waktu = waktu;
     }
 
     public int getPertemuan() {
@@ -50,8 +48,13 @@ public class Laporan {
     public void setTotal(int total) {
         this.total = total;
     }
-   
-   
-   
-   
+
+    public String getWaktu() {
+        return waktu;
+    }
+
+    public void setWaktu(String waktu) {
+        this.waktu = waktu;
+    }
+      
 }

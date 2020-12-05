@@ -39,12 +39,12 @@ public class Login implements Initializable{
     
     @FXML
     void login(ActionEvent event) {
-    if(txtEmail.getText().isEmpty()== false && txtPassword.getText().isEmpty() == false){
-           validateLogin();
-       }else {
-           txtLabel.setText("Masukkan email dan password");
-       }
-   }
+        if(txtEmail.getText().isEmpty()== false && txtPassword.getText().isEmpty() == false){
+            validateLogin();
+        }else {
+            txtLabel.setText("Masukkan email dan password");
+        }
+    }
     
     public static int getIsAdmin(){
         return isAdminDosen;
