@@ -57,23 +57,39 @@ public class KelasPage implements Initializable{
           App.setRoot("login");
     }
     
+    @FXML private void Kembali() throws IOException{
+        if(Login.getIsAdmin() == 1){
+            App.setRoot("AdminPage");
+        }else{
+            App.setRoot("DosenPage");
+        }
+    }
+    
     public ObservableList<Presensi> getPresensiList(){
         ObservableList<Presensi> presensiList = FXCollections.observableArrayList();
         Connection conn = DBConnector.getInstance().getConnection();
         String query = "SELECT k.nama_kelas AS nama_kelas, m.nim AS nim, m.nama_mahasiswa AS nama_mahasiswa, p.status AS status, p.waktu AS waktu, p.pertemuan AS pertemuan, p.id_presensi AS id_presensi "
                 + "FROM Kelas k INNER JOIN Presensi p ON k.kode_kelas = p.kode_kelas "
                 + "INNER JOIN Mahasiswa m ON p.nim = m.nim "
-                + "WHERE p.kode_kelas = '" + DosenPage.getKodeKelas() + "'";
+                + "WHERE p.kode_kelas = '" + DosenPage.getKodeKelas() + "' AND p.pertemuan = " + pertemuan;
+        String query2 = "SELECT k.nama_kelas AS nama_kelas, m.nim AS nim, m.nama_mahasiswa AS nama_mahasiswa, p.status AS status, p.waktu AS waktu, p.pertemuan AS pertemuan, p.id_presensi AS id_presensi "
+                + "FROM Kelas k INNER JOIN Presensi p ON k.kode_kelas = p.kode_kelas "
+                + "INNER JOIN Mahasiswa m ON p.nim = m.nim "
+                + "WHERE p.kode_kelas = '" + AdminPage.getKodeKelas() + "' AND p.pertemuan = " + pertemuan;
         Statement st;
         ResultSet rs;        
         
         try{
             st = conn.createStatement();
-            rs = st.executeQuery(query);
+            if(Login.getIsAdmin() == 1){
+                rs = st.executeQuery(query2);   
+            }else{
+                rs = st.executeQuery(query);   
+            }
             Presensi presensi;
             while(rs.next()){
                 presensi = new Presensi(rs.getString("nim"), rs.getString("status"), rs.getString("waktu"), rs.getInt("id_presensi"), rs.getInt("pertemuan"));
-                presensi.setNama_mahasiwa(rs.getString("nama_mahasiswa"));
+                presensi.setNamaMahasiswa(rs.getString("nama_mahasiswa"));                
                 presensiList.add(presensi);
                 labelKelas.setText(rs.getString("nama_kelas"));
             }
@@ -84,11 +100,10 @@ public class KelasPage implements Initializable{
     }
     
     public void showPresensi(){
-        ObservableList<Presensi> list = getPresensiList();
-        tvKelas.setItems(list);
+        ObservableList<Presensi> list = getPresensiList();        
         
         colNim.setCellValueFactory(new PropertyValueFactory<Presensi, String>("nim"));
-        colNamaMhs.setCellValueFactory(new PropertyValueFactory<Presensi, String>("nama_mahasiswa"));
+        colNamaMhs.setCellValueFactory(new PropertyValueFactory<Presensi, String>("namaMahasiswa"));
         colPertemuan.setCellValueFactory(new PropertyValueFactory<Presensi, Integer>("pertemuan"));
         colStatus.setCellValueFactory(new PropertyValueFactory<Presensi, String>("status"));
         colWaktu.setCellValueFactory(new PropertyValueFactory<Presensi, String>("waktu"));
@@ -104,19 +119,29 @@ public class KelasPage implements Initializable{
     @FXML
     private void handleMouseAction(MouseEvent event) throws SQLException{
         Presensi presensi = tvKelas.getSelectionModel().getSelectedItem();
-        
-        Connection conn = DBConnector.getInstance().getConnection();
-        Statement st = conn.createStatement();
-        
         DateTimeFormatter formatTanggal = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         if(presensi.getStatus().equals("Hadir")){
             String query = "UPDATE presensi SET status = 'Tidak Hadir', waktu = '" + formatTanggal.format(LocalDateTime.now()) + "' "
-                    + "WHERE id_presensi = " + presensi.getId_presensi();
-            st.execute(query);
+                    + "WHERE id_presensi = " + presensi.getIdPresensi();
+            try{
+                Connection conn = DBConnector.getInstance().getConnection();
+                Statement st = conn.createStatement();
+                st.executeUpdate(query);
+                conn.close();
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
         } else if(presensi.getStatus().equals("Tidak Hadir")){
-            String query2 = "UPDATE presensi SET status = 'Hadir', waktu = '-' "
-                    + "WHERE id_presensi = " + presensi.getId_presensi();
-            st.execute(query2);
+            try{
+                Connection conn = DBConnector.getInstance().getConnection();
+                Statement st = conn.createStatement();
+                String query = "UPDATE presensi SET status = 'Hadir', waktu = '-' "
+                    + "WHERE id_presensi = " + presensi.getIdPresensi();
+                st.executeUpdate(query);
+                conn.close();
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
         }
         showPresensi();
     }
@@ -129,10 +154,16 @@ public class KelasPage implements Initializable{
         try{
             String query = "SELECT MAX(pertemuan) AS pertemuan FROM Presensi "
                     + "WHERE kode_kelas = '" + DosenPage.getKodeKelas() + "'";
+            String query2 = "SELECT MAX(pertemuan) AS pertemuan FROM Presensi "
+                    + "WHERE kode_kelas = '" + AdminPage.getKodeKelas() + "'";
             st = conn.createStatement();
-            rs = st.executeQuery(query);
+            if(Login.getIsAdmin() == 1){
+                rs = st.executeQuery(query2);
+            }else{
+                rs = st.executeQuery(query);
+            }
             while(rs.next()){
-                
+                pertemuan = rs.getInt("pertemuan");
             }
         } catch(Exception e){
             e.printStackTrace();

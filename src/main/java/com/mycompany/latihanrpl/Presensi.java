@@ -6,14 +6,14 @@
 package com.mycompany.latihanrpl;
 
 public class Presensi {
-    String nim, nama_mahasiswa, status, waktu;
-    int id_presensi, pertemuan;
+    private String nim, namaMahasiswa, status, waktu;
+    private int idPresensi, pertemuan;
 
-    public Presensi(String nim, String status, String waktu, int id_presensi, int pertemuan) {
+    public Presensi(String nim, String status, String waktu, int id_Presensi, int pertemuan) {
         this.nim = nim;        
         this.status = status;
         this.waktu = waktu;
-        this.id_presensi = id_presensi;
+        this.idPresensi = idPresensi;
         this.pertemuan = pertemuan;
     }
 
@@ -25,12 +25,12 @@ public class Presensi {
         this.nim = nim;
     }
 
-    public String getNama_mahasiwa() {
-        return nama_mahasiswa;
+    public String getNamaMahasiswa() {
+        return namaMahasiswa;
     }
 
-    public void setNama_mahasiwa(String nama_mahasiwa) {
-        this.nama_mahasiswa = nama_mahasiswa;
+    public void setNamaMahasiswa(String namaMahasiswa) {
+        this.namaMahasiswa = namaMahasiswa;
     }
 
     public String getStatus() {
@@ -49,13 +49,13 @@ public class Presensi {
         this.waktu = waktu;
     }
 
-    public int getId_presensi() {
-        return id_presensi;
+    public int getIdPresensi() {
+        return idPresensi;
     }
 
-    public void setId_presensi(int id_presensi) {
-        this.id_presensi = id_presensi;
-    }
+    public void setIdPresensi(int idPresensi) {
+        this.idPresensi = idPresensi;
+    }  
     
     public int getPertemuan() {
         return pertemuan;

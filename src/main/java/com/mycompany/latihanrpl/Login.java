@@ -24,6 +24,8 @@ import javafx.stage.Stage;
 public class Login implements Initializable{
     public LoginConnection loginConn = new LoginConnection();
     
+    private static int isAdminDosen;
+    
     @FXML
     private Label txtLabel;
     
@@ -41,6 +43,10 @@ public class Login implements Initializable{
            txtLabel.setText("Masukkan email dan password");
        }
    }
+    
+    public static int getIsAdmin(){
+        return isAdminDosen;
+    }
    
    public void validateLogin(){       
        Connection conn = DBConnector.getInstance().getConnection();
@@ -59,8 +65,10 @@ public class Login implements Initializable{
            while (query1.next()){
                int isAdmin = query2.getInt(1);
                if(query1.getInt(1) == 1 && isAdmin == 1) {
+                     isAdminDosen = isAdmin;
                      App.setRoot("AdminPage");
                }else if(query1.getInt(1) == 0 && isAdmin == 0) {
+                     isAdminDosen = isAdmin;
                      App.setRoot("DosenPage");
                }else {
                    txtLabel.setText("Login Gagal,Coba lagi !!!");

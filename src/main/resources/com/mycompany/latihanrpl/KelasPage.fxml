@@ -5,16 +5,13 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.latihanrpl.KelasPage">
    <children>
       <Button layoutX="601.0" layoutY="14.0" mnemonicParsing="false" onAction="#Logout" text="Logout" />
       <Label fx:id="txtLabel" layoutX="503.0" layoutY="18.0" prefHeight="17.0" prefWidth="98.0" text="Welcome" />
-      <VBox layoutX="14.0" layoutY="69.0" prefHeight="111.0" prefWidth="81.0" spacing="15.0" />
-      <VBox layoutX="95.0" layoutY="69.0" prefHeight="111.0" prefWidth="200.0" spacing="5.0" />
-      <TableView fx:id="tvKelas" layoutX="21.0" layoutY="69.0" onMouseClicked="#handleMouseAction" prefHeight="246.0" prefWidth="636.0">
+      <TableView fx:id="tvKelas" layoutX="21.0" layoutY="108.0" onMouseClicked="#handleMouseAction" prefHeight="246.0" prefWidth="636.0">
         <columns>
           <TableColumn fx:id="colNim" prefWidth="93.0" text="NIM" />
             <TableColumn fx:id="colNamaMhs" minWidth="5.0" prefWidth="184.0" text="Nama Mahasiswa" />
@@ -23,9 +20,11 @@
             <TableColumn fx:id="colWaktu" minWidth="5.0" prefWidth="133.0" text="Waktu " />
         </columns>
       </TableView>
-      <Label fx:id="labelKelas" layoutX="21.0" layoutY="22.0" prefHeight="17.0" prefWidth="300.0">
+      <Label fx:id="labelKelas" layoutX="21.0" layoutY="59.0" prefHeight="17.0" prefWidth="300.0">
          <font>
             <Font size="24.0" />
-         </font></Label>
+         </font>
+      </Label>
+      <Button fx:id="btnKembali" layoutX="43.0" layoutY="14.0" mnemonicParsing="false" onAction="#Kembali" text="Kembali" />
    </children>
 </AnchorPane>

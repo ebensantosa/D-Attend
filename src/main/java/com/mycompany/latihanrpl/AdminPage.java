@@ -3,6 +3,7 @@ package com.mycompany.latihanrpl;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -59,6 +60,12 @@ public class AdminPage implements Initializable{
     private TableColumn<Dosen, Integer> colIdDosen2;
     @FXML
     private TableColumn<Dosen, String> colNamaDosen;
+    
+    private static String detailKodeKelas;
+    
+    public static String getKodeKelas(){
+        return detailKodeKelas;
+    }
     
     
     @FXML 
@@ -142,9 +149,24 @@ public class AdminPage implements Initializable{
         }
     }
     
-    @FXML
+     @FXML
     private void Go() throws IOException{
-        App.setRoot("KelasPage");
+        Connection conn = DBConnector.getInstance().getConnection();
+        PreparedStatement ps;
+        ResultSet rs;
+        try{
+           String query = "SELECT kode_kelas FROM Kelas WHERE kode_kelas = '" + kodeKelas.getText() + "'";
+           ps = conn.prepareStatement(query);
+           rs = ps.executeQuery();
+           if(rs.next()){
+               detailKodeKelas = kodeKelas.getText();
+               App.setRoot("KelasPage");
+           } else{
+               labelStatus.setText("Kode Kelas tidak ditemukan!");
+           }
+        } catch(Exception e){
+            e.printStackTrace();
+        }       
     }
     
     @FXML
