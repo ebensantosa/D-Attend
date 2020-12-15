@@ -5,16 +5,20 @@
  */
 package com.mycompany.latihanrpl;
 
+import static com.mycompany.latihanrpl.Login.conn;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import static java.time.LocalDateTime.now;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
@@ -25,6 +29,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class LaporanPage implements Initializable{            
     @FXML
@@ -46,7 +56,13 @@ public class LaporanPage implements Initializable{
     private TableColumn<Laporan, Integer>  colTotal;
     
     @FXML
-    private TableColumn<Laporan, String> colWaktu;   
+    private TableColumn<Laporan, String> colWaktu;
+    
+    @FXML
+    private TextField tfPrint;
+    
+//    @FXML
+//    private LineChart<?, ?> chartLaporan;
      
     @FXML
     private TextField filterField;
@@ -57,7 +73,11 @@ public class LaporanPage implements Initializable{
     }
     
     @FXML private void kembali() throws IOException{
-        App.setRoot("KelasPage");
+        if(Login.getIsAdmin() == 1){
+            App.setRoot("AdminPage");
+        }else{
+            App.setRoot("DosenPage");
+        }
     }            
     
     public ObservableList<Laporan> getLaporanList(){
@@ -130,11 +150,88 @@ public class LaporanPage implements Initializable{
         sortedData.comparatorProperty().bind(tvLaporan.comparatorProperty());  
         tvLaporan.setItems(sortedData);      
     }  
+
+//    private void lineChart(){
+//        final NumberAxis xAxis = new NumberAxis();
+//        final NumberAxis yAxis = new NumberAxis();
+//        xAxis.setLabel("Number of Month");
+//        //creating the chart
+//        chartLaporan = 
+//                new LineChart<Number,Number>(xAxis,yAxis);
+//
+//        chartLaporan.setTitle("Stock Monitoring, 2010");
+//        //defining a series
+//        XYChart.Series series = new XYChart.Series();
+//        series.setName("My portfolio");
+//        //populating the series with data         
+//        try 
+//        {            
+//            Statement stmt = Login.conn.createStatement();
+//            ResultSet rs = stmt.executeQuery("select pertemuan, COUNT(CASE WHEN status = 'Hadir' THEN 1 END) AS Hadir, COUNT(CASE WHEN status = 'Tidak Hadir' THEN 1 END) AS TidakHadir, COUNT(NIM) AS Total "
+//                + "FROM presensi WHERE kode_kelas = '"+DosenPage.getKodeKelas()+ "' "
+//                + "GROUP BY pertemuan");
+//
+//            //Iterate through results.
+//            while(rs.next())
+//            {
+//                series.getData().add(new XYChart.Data(rs.getInt("pertemuan"), rs.getInt("Hadir")));//Add data to Chart. Changed the second input to Integer due to LineChart<Number,Number>. This should work, though I haven't tested it.
+//            }
+//        }
+//        catch (SQLException ex) {
+//            ex.printStackTrace();
+//        }
+//        chartLaporan.getData().add(series);        
+//    }  
       
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       showLaporan();
       filter_waktu();
+//      lineChart();
     } 
+    
+    @FXML
+    private void handleMouseAction(MouseEvent event){
+        Laporan laporan = tvLaporan.getSelectionModel().getSelectedItem();
+        tfPrint.setText("" + laporan.getPertemuan());
+    }
+    
+     @FXML
+    public void showLaporan(ActionEvent event) throws JRException {
+     
+//        String bebas = "SELECT p.nim, m.nama, p.pertemuan, p.waktu FROM presensi p \n" +
+//                       "INNER JOIN mahasiswa m ON p.nim = m.nim\n" +
+//                       "WHERE p.pertemuan = '"  + tfPrint.getText() + "'";
+     
+           
+        try{
+            
+            if(Login.getIsAdmin()==1){
+             String bebas = " SELECT pertemuan, kode_kelas FROM presensi WHERE pertemuan = '"  + tfPrint.getText() + "'AND kode_kelas = '" + AdminPage.getKodeKelas() + "'";   
+             Statement statement = Login.conn.createStatement();
+             ResultSet rs = statement.executeQuery(bebas);
+            }else{
+             String bebas = " SELECT pertemuan, kode_kelas FROM presensi WHERE pertemuan = '"  + tfPrint.getText() + "'AND kode_kelas = '" + DosenPage.getKodeKelas() + "'"; 
+             Statement statement = Login.conn.createStatement();
+             ResultSet rs = statement.executeQuery(bebas);
+            }
+            
+           
+            String Jasperdalan = ("G:\\RPL\\D-Attend\\src\\main\\java\\com\\mycompany\\latihanrpl\\Blank_A4.jrxml");
+            HashMap Jaspernya = new HashMap();
+            Jaspernya.put("LaporanJasper", tfPrint.getText());
+            if(Login.getIsAdmin()==1){
+                Jaspernya.put("KodeKelas", AdminPage.getKodeKelas());
+            }else{
+                Jaspernya.put("KodeKelas", DosenPage.getKodeKelas());
+            }
+            JasperReport JasperReport  = JasperCompileManager.compileReport(Jasperdalan);
+            JasperPrint printThis = JasperFillManager.fillReport(JasperReport, Jaspernya, Login.conn);
+            JasperViewer.viewReport(printThis, false);
+        }catch (Exception e){
+             System.out.println(e.getMessage());
+        }
+    }
+    
     
 }

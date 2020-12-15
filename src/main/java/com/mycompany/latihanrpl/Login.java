@@ -52,7 +52,7 @@ public class Login implements Initializable{
         return isAdminDosen;
     }
    
-   public void validateLogin(){       
+  public void validateLogin(){       
        Connection conn = DBConnector.getInstance().getConnection();
        String email = txtEmail.getText();
        String password = txtPassword.getText();

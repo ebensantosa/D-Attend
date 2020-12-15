@@ -12,7 +12,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="697.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.latihanrpl.LaporanPage">
    <children>
       <Text layoutX="24.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laporan Presensi Mahasiswa" wrappingWidth="214.13671875" />
-      <TableView fx:id="tvLaporan" layoutX="24.0" layoutY="149.0" prefHeight="200.0" prefWidth="667.0">
+      <TableView fx:id="tvLaporan" layoutX="24.0" layoutY="149.0" onMouseClicked="#handleMouseAction" prefHeight="200.0" prefWidth="667.0">
         <columns>
             <TableColumn fx:id="colPertemuan" prefWidth="113.0" text="Pertemuan" />
             <TableColumn fx:id="colHadir" prefWidth="122.0" text="Hadir" />
@@ -23,11 +23,13 @@
       </TableView>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#kembali" text="Kembali" />
       <Button layoutX="637.0" layoutY="14.0" mnemonicParsing="false" onAction="#Logout" text="Logout" />
-      <Label fx:id="labelKelas" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="286.0" layoutY="117.0" prefHeight="27.0" prefWidth="405.0" textAlignment="RIGHT">
+      <Label fx:id="labelKelas" layoutX="286.0" layoutY="117.0" prefHeight="27.0" prefWidth="405.0" textAlignment="RIGHT">
          <font>
             <Font size="18.0" />
          </font></Label>
       <Text layoutX="14.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter berdasarkan waktu presensi:" />
       <TextField fx:id="filterField" layoutX="196.0" layoutY="72.0" prefHeight="17.0" prefWidth="149.0" />
+      <Button fx:id="btnPrint" layoutX="629.0" layoutY="369.0" mnemonicParsing="false" onAction="#showLaporan" text="Print" />
+      <TextField fx:id="tfPrint" layoutX="534.0" layoutY="369.0" prefHeight="25.0" prefWidth="98.0" />
    </children>
 </AnchorPane>

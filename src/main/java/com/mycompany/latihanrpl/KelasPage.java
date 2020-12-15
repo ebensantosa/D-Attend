@@ -149,8 +149,9 @@ public class KelasPage implements Initializable{
     }
     
     @FXML
-    private void mahasiswaAbsen(){                      
-        String queryAbsen = "UPDATE presensi SET status = 'Tidak Hadir', waktu = '0000-00-00 00:00:00' "
+    private void mahasiswaAbsen(){    
+        DateTimeFormatter formatTanggal = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String queryAbsen = "UPDATE presensi SET status = 'Tidak Hadir', waktu = '" + formatTanggal.format(LocalDateTime.now()) + "' "
                     + "WHERE id_presensi = " + idPresensi + ";";
         try{
             Statement st = Login.conn.createStatement();

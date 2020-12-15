@@ -11,7 +11,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.latihanrpl.KelasPage">
    <children>
-      <Button layoutX="601.0" layoutY="14.0" mnemonicParsing="false" onAction="#Logout" text="Logout" />      
+      <Button layoutX="601.0" layoutY="14.0" mnemonicParsing="false" onAction="#Logout" text="Logout" />
+      <Label fx:id="txtLabel" layoutX="503.0" layoutY="18.0" prefHeight="17.0" prefWidth="98.0" text="Welcome" />
       <TableView fx:id="tvKelas" layoutX="21.0" layoutY="133.0" onMouseClicked="#handleMouseAction" prefHeight="246.0" prefWidth="596.0">
         <columns>
           <TableColumn fx:id="colNim" prefWidth="83.0" text="NIM" />
@@ -21,7 +22,7 @@
             <TableColumn fx:id="colWaktu" minWidth="5.0" prefWidth="137.0" text="Waktu " />
         </columns>
       </TableView>
-      <Label fx:id="labelKelas" alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="54.0" prefHeight="35.0" prefWidth="631.0" textAlignment="CENTER">
+      <Label fx:id="labelKelas" layoutX="43.0" layoutY="54.0" prefHeight="35.0" prefWidth="631.0">
          <font>
             <Font size="24.0" />
          </font>

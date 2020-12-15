@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="973293de-d2aa-4a7a-8432-a5521f479d00">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="633"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="353"/>
+	<subDataset name="Empty Dataset1" uuid="ad6a831b-b87f-4914-a68e-4eca5da6e817"/>
+	<parameter name="LaporanJasper" class="java.lang.String"/>
+	<parameter name="KodeKelas" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT p.nim,
+	m.nama_mahasiswa,
+	p.pertemuan,
+	p.waktu,
+	p.status
+FROM  Presensi  p
+	INNER JOIN  Mahasiswa  m ON 
+	 p.nim = m.nim 
+WHERE 
+	 p.pertemuan = $P{LaporanJasper} AND p.kode_kelas = $P{KodeKelas}
+]]>
+	</queryString>
+	<field name="nim" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="nim"/>
+		<property name="com.jaspersoft.studio.field.label" value="nim"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Presensi"/>
+	</field>
+	<field name="nama_mahasiswa" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="nama_mahasiswa"/>
+		<property name="com.jaspersoft.studio.field.label" value="nama_mahasiswa"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Mahasiswa"/>
+	</field>
+	<field name="pertemuan" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="pertemuan"/>
+		<property name="com.jaspersoft.studio.field.label" value="pertemuan"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Presensi"/>
+	</field>
+	<field name="waktu" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="waktu"/>
+		<property name="com.jaspersoft.studio.field.label" value="waktu"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Presensi"/>
+	</field>
+	<field name="status" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="status"/>
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Presensi"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="0" width="300" height="74" uuid="a23eadc7-3f90-4a49-909d-c64939718753"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Laporan Presensi Pertemuan]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="290" y="0" width="275" height="74" uuid="fdcfb3dc-fd3e-4d33-a948-d709d1d2893b"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pertemuan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="18" width="100" height="30" uuid="d8c29976-6dc7-477f-9d87-22fd990dcb23"/>
+				<text><![CDATA[NIM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="18" width="120" height="30" uuid="327ad637-8adc-4344-bbac-fe7461bf0015"/>
+				<text><![CDATA[Nama Mahasiswa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="18" width="100" height="30" uuid="767dd813-57f4-4239-8867-9c0a0c43374e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="db8a4d3e-3296-4ddd-a7d8-6d198576f089"/>
+				</reportElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="18" width="100" height="30" uuid="bd71ff93-6d3d-40e8-a3e3-acd8282e1094">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="db8a4d3e-3296-4ddd-a7d8-6d198576f089"/>
+				</reportElement>
+				<text><![CDATA[Waktu Presensi]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="59" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="20" width="100" height="30" uuid="4eea0f35-e9eb-485c-91cc-61bc296910e8"/>
+				<textFieldExpression><![CDATA[$F{nim}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="20" width="120" height="30" uuid="564b1d19-7b7c-4374-80ee-9cfb971a7727"/>
+				<textFieldExpression><![CDATA[$F{nama_mahasiswa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="20" width="100" height="30" uuid="61261583-2361-4cb7-bc2c-dd614916a639"/>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="20" width="100" height="30" uuid="04eb5025-e89f-4acb-b013-1a37c8194a69"/>
+				<textFieldExpression><![CDATA[$F{waktu}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="329" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
