@@ -190,4 +190,33 @@ public class LaporanPage implements Initializable{
     }
     
     
+    public void showGrafik(ActionEvent event) throws JRException {              
+        try{           
+            if(Login.getIsAdmin()==1){
+                String bebas = " SELECT status, COUNT(p.status) AS Total_Absen FROM  Presensi p WHERE pertemuan = '"  + tfPrint.getText() + "'AND kode_kelas = '" + AdminPage.getKodeKelas() + "' GROUP BY status";
+                Statement statement = Login.conn.createStatement();
+                ResultSet rs = statement.executeQuery(bebas);
+            }else{
+                String bebas = " SELECT status, COUNT(p.status) AS Total_Absen FROM  Presensi p WHERE pertemuan = '"  + tfPrint.getText() + "'AND kode_kelas = '" + DosenPage.getKodeKelas() + "' GROUP BY status";
+                Statement statement = Login.conn.createStatement();
+                ResultSet rs = statement.executeQuery(bebas);
+            }
+                       
+            String Jasperdalan = ("G:\\RPL\\D-Attend\\src\\main\\java\\com\\mycompany\\latihanrpl\\Blank_A4_1.jrxml");
+            HashMap Jaspernya = new HashMap();
+            Jaspernya.put("LaporanJasper", tfPrint.getText());
+            if(Login.getIsAdmin()==1){
+                Jaspernya.put("KodeKelas", AdminPage.getKodeKelas());
+            }else{
+                Jaspernya.put("KodeKelas", DosenPage.getKodeKelas());
+            }
+            JasperReport JasperReport  = JasperCompileManager.compileReport(Jasperdalan);
+            JasperPrint printThis = JasperFillManager.fillReport(JasperReport, Jaspernya, Login.conn);
+            JasperViewer.viewReport(printThis, false);
+        }catch (Exception e){
+             System.out.println(e.getMessage());
+        }
+    }
+    
+    
 }

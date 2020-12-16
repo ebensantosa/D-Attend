@@ -29,10 +29,15 @@
          </font></Label>
       <Text layoutX="14.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter berdasarkan waktu presensi:" />
       <TextField fx:id="filterField" layoutX="196.0" layoutY="72.0" prefHeight="17.0" prefWidth="149.0" />
-      <Button fx:id="btnPrint" layoutX="650.0" layoutY="369.0" mnemonicParsing="false" onAction="#showLaporan" text="Print" />
-      <TextField fx:id="tfPrint" layoutX="550.0" layoutY="369.0" prefHeight="25.0" prefWidth="98.0" />
-      <Button fx:id="btnLihat" layoutX="24.0" layoutY="382.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="54.0" text="Lihat" />
+      <Button fx:id="btnPrint" layoutX="650.0" layoutY="372.0" mnemonicParsing="false" onAction="#showLaporan" text="Print" />
+      <TextField fx:id="tfPrint" layoutX="552.0" layoutY="373.0" prefHeight="25.0" prefWidth="98.0" />
+      <Button fx:id="btnLihat" layoutX="24.0" layoutY="382.0" mnemonicParsing="false" onAction="#showGrafik" prefHeight="27.0" prefWidth="54.0" text="Lihat" />
       <Text layoutX="24.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laporan Grafik">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="563.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laporan Tabel">
          <font>
             <Font size="18.0" />
          </font>
