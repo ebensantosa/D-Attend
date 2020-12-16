@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4_1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="971613f5-9b94-4bb7-aa77-0b7a4a96c41b">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<parameter name="LaporanJasper" class="java.lang.String"/>
+	<parameter name="KodeKelas" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+status, COUNT(p.status) AS Total_Absen
+FROM  Presensi  p
+   WHERE 
+   p.pertemuan = $P{LaporanJasper} 
+   AND p.kode_kelas = $P{KodeKelas}
+   GROUP BY status
+
+]]>
+	</queryString>
+	<field name="status" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="status"/>
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Presensi"/>
+	</field>
+	<field name="Total_Absen" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="Total_Absen"/>
+		<property name="com.jaspersoft.studio.field.label" value="Total_Absen"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement x="160" y="6" width="260" height="59" uuid="54e12b44-1483-4636-b5d5-a208fef6456a"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Grafik Kehadiran Mahasiswa]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="294" splitType="Stretch">
+			<pieChart>
+				<chart evaluationTime="Report">
+					<reportElement x="110" y="40" width="320" height="200" uuid="a2c4143d-82ab-4709-879e-b2766bcadf9b"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<dataset resetType="Report"/>
+					<keyExpression><![CDATA[$F{Total_Absen}]]></keyExpression>
+					<valueExpression><![CDATA[$F{Total_Absen}]]></valueExpression>
+					<labelExpression><![CDATA[$F{status}]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+			<staticText>
+				<reportElement x="156" y="218" width="100" height="20" uuid="cfbcc4ca-11ef-4c29-986d-ac6debd3843b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Total Mahasiswa]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

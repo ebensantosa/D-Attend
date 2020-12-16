@@ -60,9 +60,6 @@ public class LaporanPage implements Initializable{
     
     @FXML
     private TextField tfPrint;
-    
-//    @FXML
-//    private LineChart<?, ?> chartLaporan;
      
     @FXML
     private TextField filterField;
@@ -149,45 +146,12 @@ public class LaporanPage implements Initializable{
         SortedList<Laporan> sortedData = new SortedList<>(filteredData);  
         sortedData.comparatorProperty().bind(tvLaporan.comparatorProperty());  
         tvLaporan.setItems(sortedData);      
-    }  
-
-//    private void lineChart(){
-//        final NumberAxis xAxis = new NumberAxis();
-//        final NumberAxis yAxis = new NumberAxis();
-//        xAxis.setLabel("Number of Month");
-//        //creating the chart
-//        chartLaporan = 
-//                new LineChart<Number,Number>(xAxis,yAxis);
-//
-//        chartLaporan.setTitle("Stock Monitoring, 2010");
-//        //defining a series
-//        XYChart.Series series = new XYChart.Series();
-//        series.setName("My portfolio");
-//        //populating the series with data         
-//        try 
-//        {            
-//            Statement stmt = Login.conn.createStatement();
-//            ResultSet rs = stmt.executeQuery("select pertemuan, COUNT(CASE WHEN status = 'Hadir' THEN 1 END) AS Hadir, COUNT(CASE WHEN status = 'Tidak Hadir' THEN 1 END) AS TidakHadir, COUNT(NIM) AS Total "
-//                + "FROM presensi WHERE kode_kelas = '"+DosenPage.getKodeKelas()+ "' "
-//                + "GROUP BY pertemuan");
-//
-//            //Iterate through results.
-//            while(rs.next())
-//            {
-//                series.getData().add(new XYChart.Data(rs.getInt("pertemuan"), rs.getInt("Hadir")));//Add data to Chart. Changed the second input to Integer due to LineChart<Number,Number>. This should work, though I haven't tested it.
-//            }
-//        }
-//        catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//        chartLaporan.getData().add(series);        
-//    }  
+    }
       
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       showLaporan();
       filter_waktu();
-//      lineChart();
     } 
     
     @FXML
@@ -197,26 +161,18 @@ public class LaporanPage implements Initializable{
     }
     
      @FXML
-    public void showLaporan(ActionEvent event) throws JRException {
-     
-//        String bebas = "SELECT p.nim, m.nama, p.pertemuan, p.waktu FROM presensi p \n" +
-//                       "INNER JOIN mahasiswa m ON p.nim = m.nim\n" +
-//                       "WHERE p.pertemuan = '"  + tfPrint.getText() + "'";
-     
-           
-        try{
-            
+    public void showLaporan(ActionEvent event) throws JRException {              
+        try{           
             if(Login.getIsAdmin()==1){
-             String bebas = " SELECT pertemuan, kode_kelas FROM presensi WHERE pertemuan = '"  + tfPrint.getText() + "'AND kode_kelas = '" + AdminPage.getKodeKelas() + "'";   
-             Statement statement = Login.conn.createStatement();
-             ResultSet rs = statement.executeQuery(bebas);
+                String bebas = " SELECT pertemuan, kode_kelas FROM presensi WHERE pertemuan = '"  + tfPrint.getText() + "'AND kode_kelas = '" + AdminPage.getKodeKelas() + "'";   
+                Statement statement = Login.conn.createStatement();
+                ResultSet rs = statement.executeQuery(bebas);
             }else{
-             String bebas = " SELECT pertemuan, kode_kelas FROM presensi WHERE pertemuan = '"  + tfPrint.getText() + "'AND kode_kelas = '" + DosenPage.getKodeKelas() + "'"; 
-             Statement statement = Login.conn.createStatement();
-             ResultSet rs = statement.executeQuery(bebas);
+                String bebas = " SELECT pertemuan, kode_kelas FROM presensi WHERE pertemuan = '"  + tfPrint.getText() + "'AND kode_kelas = '" + DosenPage.getKodeKelas() + "'"; 
+                Statement statement = Login.conn.createStatement();
+                ResultSet rs = statement.executeQuery(bebas);
             }
-            
-           
+                       
             String Jasperdalan = ("G:\\RPL\\D-Attend\\src\\main\\java\\com\\mycompany\\latihanrpl\\Blank_A4.jrxml");
             HashMap Jaspernya = new HashMap();
             Jaspernya.put("LaporanJasper", tfPrint.getText());

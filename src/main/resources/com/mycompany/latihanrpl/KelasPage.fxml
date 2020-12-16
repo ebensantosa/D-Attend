@@ -12,7 +12,6 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.latihanrpl.KelasPage">
    <children>
       <Button layoutX="601.0" layoutY="14.0" mnemonicParsing="false" onAction="#Logout" text="Logout" />
-      <Label fx:id="txtLabel" layoutX="503.0" layoutY="18.0" prefHeight="17.0" prefWidth="98.0" text="Welcome" />
       <TableView fx:id="tvKelas" layoutX="21.0" layoutY="133.0" onMouseClicked="#handleMouseAction" prefHeight="246.0" prefWidth="596.0">
         <columns>
           <TableColumn fx:id="colNim" prefWidth="83.0" text="NIM" />
@@ -30,23 +29,26 @@
       <Button fx:id="btnKembali" layoutX="43.0" layoutY="14.0" mnemonicParsing="false" onAction="#Kembali" text="Kembali" />
       <Button fx:id="btnHadir" layoutX="630.0" layoutY="144.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="54.0" text="Hadir" />
       <Button fx:id="btnAbsen" layoutX="627.0" layoutY="179.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="59.0" text="Absen" />
-      <Button fx:id="btnPertemuan" layoutX="23.0" layoutY="407.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="75.0" text="Buat">
+      <Button fx:id="btnPertemuan" layoutX="25.0" layoutY="477.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="75.0" text="Buat">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Label layoutX="21.0" layoutY="380.0" text="Buat Pertemuan Baru">
+      <Label layoutX="23.0" layoutY="450.0" text="Buat Pertemuan Baru">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <Text layoutX="23.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cari Dengan Nama/NIM:" />
       <TextField fx:id="searchField" layoutX="161.0" layoutY="101.0" prefHeight="17.0" prefWidth="149.0" />
-      <Button layoutX="532.0" layoutY="407.0" mnemonicParsing="false" onAction="#goLaporan" prefHeight="30.0" prefWidth="75.0" text="Laporan" />
-      <Label layoutX="509.0" layoutY="380.0" text="Lihat Laporan">
+      <Button layoutX="599.0" layoutY="478.0" mnemonicParsing="false" onAction="#goLaporan" prefHeight="30.0" prefWidth="75.0" text="Laporan" />
+      <Label layoutX="576.0" layoutY="451.0" text="Lihat Laporan">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
+      <Button fx:id="btnMahasiswa" layoutX="497.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="120.0" text="Tambah Mahasiswa" />
+      <Label fx:id="txtLabel" layoutX="503.0" layoutY="18.0" prefHeight="17.0" prefWidth="98.0" text="Welcome" />
+      <Label fx:id="labelTambah" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="356.0" layoutY="384.0" prefHeight="17.0" prefWidth="139.0" textFill="RED" />
    </children>
 </AnchorPane>

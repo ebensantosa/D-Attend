@@ -53,12 +53,16 @@ public class KelasPage implements Initializable{
     @FXML
     private Label labelKelas;
     @FXML
+    private Label labelTambah;
+    @FXML
     private Button btnHadir;
     @FXML
     private Button btnAbsen;
     @FXML
     private Button btnPertemuan;
-     @FXML
+    @FXML
+    private Button btnMahasiswa;
+    @FXML
     private TextField searchField;
     
     public static int getPertemuan(){
@@ -195,6 +199,15 @@ public class KelasPage implements Initializable{
     }
     
     @FXML
+    private void tambahMhs() throws IOException{
+        if(Login.getIsAdmin() == 1){
+            App.setRoot("MahasiswaPage");
+        } else{
+            labelTambah.setText("You must log in as Admin");
+        }
+    }
+    
+    @FXML
     private void handleButtonAction(ActionEvent event) throws IOException{                
         if(event.getSource() == btnHadir){
             mahasiswaHadir();
@@ -202,6 +215,8 @@ public class KelasPage implements Initializable{
             mahasiswaAbsen();
         } else if(event.getSource() == btnPertemuan){
             buatPertemuan();
+        } else if(event.getSource() == btnMahasiswa){
+            tambahMhs();
         }
     }
     
